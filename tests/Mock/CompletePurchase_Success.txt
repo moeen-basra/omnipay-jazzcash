@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Date: Wed, 11 Oct 2023 02:34:58 GMT
+Content-type: text/html; charset=utf-8
+
+{"ppmbf_1":null,"ppmbf_2":null,"ppmbf_3":null,"ppmbf_4":null,"ppmbf_5":null,"ppmpf_1":null,"ppmpf_2":"zu1vv3","ppmpf_3":null,"ppmpf_4":null,"ppmpf_5":null,"pp_Amount":"1500","pp_BankID":null,"pp_TxnType":"MWALLET","pp_Version":"1.1","pp_AuthCode":"024166247497","pp_Language":"EN","pp_TxnRefNo":"6158408e95098","pp_MerchantID":"00258027","pp_SecureHash":"19DAB816503B0EAABE2C48FBE48461CB2ADF685BD417EBEE37C080951DB0F528","pp_TxnCurrency":"PKR","pp_TxnDateTime":"20211002162046","pp_ResponseCode":"000","pp_BillReference":"6158408e95098","pp_SubMerchantId":null,"pp_ResponseMessage":null,"pp_SettlementExpiry":null,"pp_RetreivalReferenceNo":"211002644299"}

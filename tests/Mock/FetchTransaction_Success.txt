@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Date: Wed, 11 Oct 2023 02:34:58 GMT
+Content-type: text/html; charset=utf-8
+
+{"pp_BankID":"","pp_Status":"Completed","pp_AuthCode":"049143965100","pp_ProductID":"","pp_SecureHash":"DB32CDBB6E6471A3AF2FF61F1B983F29302EA9ADD8EB147B4AB7B17154084D3D","pp_ResponseCode":"000","pp_SettlementDate":"20230703115753","pp_ResponseMessage":"Thank you for Using JazzCash, your operation successfully completed.","pp_SettlementExpiry":"","pp_PaymentResponseCode":"121","pp_RetrievalReferenceNo":"230703954124","pp_PaymentResponseMessage":"Transaction has been marked confirmed by Merchant."}
