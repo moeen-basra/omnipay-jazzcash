@@ -78,7 +78,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                     'The language "%s" is invalid, must be one of %s',
                     $value,
                     implode(
-                        ', ', $this->allowedLanguages
+                        ', ',
+                        $this->allowedLanguages
                     )
                 )
             );
@@ -99,7 +100,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                     'The paymentMethod "%s" is invalid, must be one of %s',
                     $value,
                     implode(
-                        ', ', $this->allowedPaymentMethods
+                        ', ',
+                        $this->allowedPaymentMethods
                     )
                 )
             );
@@ -115,7 +117,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                     'The currency "%s" is invalid, must be one of %s',
                     $value,
                     implode(
-                        ', ', $this->allowedCurrencies
+                        ', ',
+                        $this->allowedCurrencies
                     )
                 )
             );

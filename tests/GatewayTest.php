@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Omnipay\Jazzcash\Tests;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Common\Message\NotificationInterface;
 use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Jazzcash\Gateway;
 use Omnipay\Jazzcash\Message\CompletePurchaseRequest;
@@ -123,7 +124,8 @@ class GatewayTest extends TestCase
     {
         $this->setMockHttpResponse('FetchTransaction_Success.txt');
 
-        $request = $this->gateway->fetchTransaction(Helper::getFetchTransactionParameters());
+        $parameters = Helper::getFetchTransactionParameters();
+        $request = $this->gateway->fetchTransaction($parameters);
 
         $this->assertInstanceOf(
             FetchTransactionRequest::class,
@@ -133,6 +135,22 @@ class GatewayTest extends TestCase
         $response = $request->send();
 
         $this->assertInstanceOf(FetchTransactionResponse::class, $response);
+        $this->assertInstanceOf(NotificationInterface::class, $response);
+
+        $this->assertSame(
+            'Thank you for Using JazzCash, your operation successfully completed.',
+            $response->getMessage()
+        );
+
+        $this->assertSame(
+            NotificationInterface::STATUS_COMPLETED,
+            $response->getTransactionStatus()
+        );
+
+        $this->assertSame(
+            $parameters['transactionReference'],
+            $response->getTransactionReference()
+        );
 
         $this->assertTrue($response->isSuccessful());
     }
@@ -140,9 +158,22 @@ class GatewayTest extends TestCase
     public function test_fetch_transaction_failed(): void
     {
         $this->setMockHttpResponse('FetchTransaction_Failed.txt');
-        $response = $this->gateway->fetchTransaction(Helper::getFetchTransactionParameters())->send();
+
+        $parameters = Helper::getFetchTransactionParameters();
+        $response = $this->gateway->fetchTransaction($parameters)->send();
 
         $this->assertInstanceOf(FetchTransactionResponse::class, $response);
+        $this->assertInstanceOf(NotificationInterface::class, $response);
+
+        $this->assertSame(
+            NotificationInterface::STATUS_FAILED,
+            $response->getTransactionStatus()
+        );
+
+        $this->assertSame(
+            $parameters['transactionReference'],
+            $response->getTransactionReference()
+        );
 
         $this->assertFalse($response->isSuccessful());
     }

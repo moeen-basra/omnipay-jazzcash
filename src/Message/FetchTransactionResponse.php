@@ -4,20 +4,21 @@ declare(strict_types=1);
 
 namespace Omnipay\Jazzcash\Message;
 
-class FetchTransactionResponse extends AbstractResponse
-{
-    protected array $responseCodes = [
-        '000',
-        '199',
-        '110'
-    ];
+use Omnipay\Common\Message\NotificationInterface;
 
-    protected array $statuses = [
+class FetchTransactionResponse extends AbstractResponse implements NotificationInterface
+{
+    /**
+     * The expected transaction status coming from jazzcash
+     * @var array|string[]
+     */
+    protected array $transactionStatuses = [
         'Pending',
         'Completed',
         'Dropped',
         'Failed',
         'Validation Failed',
+        ''
     ];
 
     public function isSuccessful(): bool
@@ -27,5 +28,30 @@ class FetchTransactionResponse extends AbstractResponse
         }
         return false;
     }
-}
 
+    public function getTransactionReference(): string
+    {
+        return $this->request->getParameters()['transactionReference'];
+    }
+
+    public function getTransactionStatus(): string
+    {
+        $status = !empty($this->data['pp_Status']) ? $this->data['pp_Status'] : 'UNKNOWN';
+
+        return match ($status) {
+            'Pending' => NotificationInterface::STATUS_PENDING,
+            'Completed' => NotificationInterface::STATUS_COMPLETED,
+            default => NotificationInterface::STATUS_FAILED
+        };
+    }
+
+    public function getMessage(): string
+    {
+        if (!empty($this->data['pp_ResponseMessage'])) {
+            return $this->data['pp_ResponseMessage'];
+        }
+
+        // This can be logged
+        return 'UNKNOWN';
+    }
+}

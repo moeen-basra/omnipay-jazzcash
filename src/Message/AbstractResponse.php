@@ -111,17 +111,11 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
 
     public function getCode(): ?string
     {
-        if (isset($this->data['pp_ResponseCode'])) {
-            return $this->data['pp_ResponseCode'];
-        }
-        return null;
+        return $this->data['pp_ResponseCode'] ?? null;
     }
 
     public function getMessage(): ?string
     {
-        if (isset($this->data['pp_ResponseMessage'])) {
-            return $this->data['pp_ResponseMessage'];
-        }
-        return null;
+        return $this->data['pp_ResponseMessage'] ?? null;
     }
 }

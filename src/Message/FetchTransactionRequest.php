@@ -27,10 +27,13 @@ class FetchTransactionRequest extends AbstractRequest
     {
         try {
             $response = $this->httpClient->request(
-                'POST', $this->getUri(), [
+                'POST',
+                $this->getUri(),
+                [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
-                ], json_encode($data, JSON_THROW_ON_ERROR)
+                ],
+                json_encode($data, JSON_THROW_ON_ERROR)
             );
 
             $content = json_decode($response->getBody()->getContents(), true);
