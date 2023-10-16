@@ -33,6 +33,10 @@
       "Omnipay\\Jazzcash\\": "src/"
     }
   },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "testVerbose": "@test -vvv"
+  },
   "autoload-dev": {
     "psr-4": {
       "Omnipay\\Jazzcash\\Tests\\": "tests/"
@@ -40,8 +44,8 @@
   },
   "require": {
     "omnipay/common": "^3.2",
-    "league/omnipay": "^3.2",
-    "guzzlehttp/guzzle": "^7.8"
+    "guzzlehttp/guzzle": "^7.8",
+    "php-http/guzzle7-adapter": "^1.0"
   },
   "require-dev": {
     "omnipay/tests": "^3|^4",
